@@ -12,6 +12,8 @@ public class Sequence{
 	private int start;
 	private int end;
 	
+	public Sequence next= null;		//Sequence treated as a node of a list of sequences
+	
 	public Sequence() {
 		
 	}
