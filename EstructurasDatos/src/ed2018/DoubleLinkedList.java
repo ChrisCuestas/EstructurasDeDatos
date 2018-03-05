@@ -1,7 +1,5 @@
 package ed2018;
 
-import java.awt.geom.Ellipse2D;
-
 public class DoubleLinkedList<E> extends List<E> {
 
 	class Node<T> {
