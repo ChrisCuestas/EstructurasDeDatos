@@ -132,7 +132,6 @@ public class LinkedList<E> extends List<E> {
 
 	/**
 	 * 
-	 * 
 	 * @param
 	 * @return
 	 * @return
