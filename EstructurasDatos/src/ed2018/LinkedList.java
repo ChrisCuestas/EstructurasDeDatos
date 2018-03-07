@@ -7,7 +7,7 @@ package ed2018;
  * List' abstract methods.
  * The positions of the list are taken from 0 to size-1.
  * 
- * @author Christian Camilo Cuestas Ib·Òez
+ * @author Christian Camilo Cuestas Ib√°√±ez
  *
  * @param <E>:	This is a generic class with which the list will work.
  */
@@ -21,6 +21,10 @@ public class LinkedList<E> extends List<E> {
 			super();
 			this.element = element;
 			this.nextNode = nextNode;
+		}
+		@Override
+		public String toString(){
+			return "Node: ["+ element.toString() +"]" + "\n";
 		}
 	}
 	
