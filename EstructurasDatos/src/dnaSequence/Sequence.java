@@ -2,17 +2,15 @@ package dnaSequence;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.IOException;
-import java.util.Scanner;
 
 public class Sequence{
+	
+	private static LinkedList<Sequence> sequences = new LinkedList<Sequence>();
 	
 	private String sequence;
 	private String chromosome;
 	private int start;
 	private int end;
-	
-	public Sequence next= null;		//Sequence treated as a node of a list of sequences
 	
 	public Sequence() {
 		
@@ -27,6 +25,19 @@ public class Sequence{
 	
 	public static void main(String[] args) {
 		
+		try {
+			FileReader fr = new FileReader("DNA_sequences.txt");
+			BufferedReader br = new BufferedReader(fr);
+			String input = br.readLine();
+			while(input!=null) {
+				String[] data= input.split(",");
+				sequences.insert(new Sequence(data[0], data[1], Integer.parseInt(data[2]),Integer.parseInt(data[3])));
+				input=br.readLine();
+			}
+			sequences.printList();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		/*
 		
 		String filename = "newfile.txt"; 
