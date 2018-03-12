@@ -104,6 +104,10 @@ public class LinkedList<E> extends List<E> {
 		public String toString(){
 			return "["+ element.toString() +"]" + "\n";
 		}
+		
+		public Node<T> clone(){
+			return new Node<T>(this.element, this.nextNode.clone());
+		}
 	}
 	
 	Node<E> head;
@@ -242,6 +246,17 @@ public class LinkedList<E> extends List<E> {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void reverse() {
+		Stack<E> tempStack= new Stack<E>();
+		Node<E> temp = this.head;
+		
+		while(temp!=null) {
+			tempStack.push(temp.clone().element);
+			temp=temp.nextNode;
+		}
+		this.head=tempStack.getHead();
 	}
 }
 
