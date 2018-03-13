@@ -1,4 +1,4 @@
-package data;
+package ed2018;
 
 class Grade{
 	public String name;

@@ -1,12 +1,16 @@
 package ed2018;
+
+import java.io.BufferedWriter;
+import java.io.OutputStreamWriter;
+
 /**
  * The Stack is an ArraybasedList. 
  * 
- * @author Christian Camilo Cuestas Ib√°√±ez
+ * @author Christian Camilo Cuestas Ib·Òez
  *
  * @param <E>
  */
-public class Stack<E> extends ArraybasedList<E> {
+public class Stack<E> extends LinkedList<E> {
 
 	public Stack() {
 		super();

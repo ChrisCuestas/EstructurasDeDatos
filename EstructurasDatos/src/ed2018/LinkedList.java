@@ -1,4 +1,4 @@
-package data;
+package ed2018;
 
 import java.io.BufferedWriter;
 import java.io.OutputStreamWriter;

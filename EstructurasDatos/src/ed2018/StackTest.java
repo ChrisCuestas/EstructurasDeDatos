@@ -1,6 +1,6 @@
-package data;
+package ed2018;
 
-class Grade{
+/*class Grade{
 	public String name;
 	public double grade;
 	
@@ -13,7 +13,7 @@ class Grade{
 	public String toString() {
 		return "Grade: " + name + "\t"+ "Value: " + grade;
 	}
-}
+}*/
 public class StackTest {
 
 	public static void main(String[] args) {
