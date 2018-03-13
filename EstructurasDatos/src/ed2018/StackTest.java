@@ -1,21 +1,21 @@
 package ed2018;
 
-/*class Grade{
-	public String name;
-	public double grade;
-	
-	public Grade(String name, double grade) {
-		this.name=name;
-		this.grade=grade;
-	}
+import java.io.BufferedWriter;
+import java.io.OutputStreamWriter;
 
-	@Override
-	public String toString() {
-		return "Grade: " + name + "\t"+ "Value: " + grade;
-	}
-}*/
 public class StackTest {
 
+	public void printStack(Stack<Grade> s) {
+		BufferedWriter bw= new BufferedWriter(new OutputStreamWriter(System.out));
+		try {
+			while(!s.isEmpty()) {
+				bw.write(s.pop().toString()+ "\n");
+			}
+			bw.flush();
+			bw.close();
+		} catch (Exception e) {e.printStackTrace();}
+	}
+	
 	public static void main(String[] args) {
 		
 		Stack<Grade> grades = new  Stack<Grade>();

@@ -28,14 +28,17 @@ public class Stack<E> extends LinkedList<E> {
 		return this.get(this.size-1);
 	}
 	
-	public void printStack() {
-		BufferedWriter bw= new BufferedWriter(new OutputStreamWriter(System.out));
-		try {
-			while(!this.isEmpty()) {
-				bw.write(this.pop().toString()+ "\n");
-			}
-			bw.flush();
-			bw.close();
-		} catch (Exception e) {e.printStackTrace();}
+	public String printStack() {
+		String printedStack="";
+		Stack<E> temp = new Stack<E>();
+		while(!this.isEmpty()) {
+			temp.push(this.pop());
+		}
+		E element=null;
+		while(!temp.isEmpty()) {
+			element=temp.pop();
+			printedStack+=element.toString()+"\n";
+		}
+		return printedStack;
 	}
 }
