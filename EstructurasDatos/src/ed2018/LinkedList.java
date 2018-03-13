@@ -174,7 +174,7 @@ public class LinkedList<E> extends List<E> {
 	}
 	
 	public void reverse() {
-		Stack<E> tempStack= new Stack<E>();
+		LinkedStack<E> tempStack= new LinkedStack<E>();
 		Node<E> temp = this.head;
 		
 		while(temp!=null) {
@@ -185,3 +185,35 @@ public class LinkedList<E> extends List<E> {
 	}
 }
 
+class LinkedStack<E> extends LinkedList<E> {
+
+	public LinkedStack() {
+		super();
+	}
+
+	public void push(E element) {
+		this.insert(this.size, element);
+	}
+	
+	public E pop() {
+		return this.remove(this.size-1);
+	}
+	
+	public E peek() {
+		return this.get(this.size-1);
+	}
+	
+	public String printStack() {
+		String printedStack="";
+		Stack<E> temp = new Stack<E>();
+		while(!this.isEmpty()) {
+			temp.push(this.pop());
+		}
+		E element=null;
+		while(!temp.isEmpty()) {
+			element=temp.pop();
+			printedStack+=element.toString()+"\n";
+		}
+		return printedStack;
+	}
+}
