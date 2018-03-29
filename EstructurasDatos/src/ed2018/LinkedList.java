@@ -10,7 +10,7 @@ import java.io.OutputStreamWriter;
  * List' abstract methods.
  * The positions of the list are taken from 0 to size-1.
  * 
- * @author Christian Camilo Cuestas Ibáñez
+ * @author Christian Camilo Cuestas Ibanez
  *
  * @param <E>:	This is a generic class with which the list will work.
  */
