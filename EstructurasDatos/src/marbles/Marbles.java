@@ -21,7 +21,10 @@ public class Marbles {
 		if(!this.marbles.isEmpty()) {
 			if(n<this.marbles.getLast()) {
 				Stack<Integer> stack = new Stack<Integer>();
-				while (n<this.marbles.getLast()) stack.push(this.marbles.removeLast());
+				while (n<this.marbles.getLast()) {
+					stack.push(this.marbles.removeLast());
+					if(this.marbles.isEmpty()) break;
+				}
 				this.marbles.insert(n);
 				while (!stack.isEmpty()) this.marbles.insert(stack.pop());
 			}else this.marbles.insert(n);
@@ -29,12 +32,12 @@ public class Marbles {
 	}
 	
 	public int findMarble(int n) {
-		return this.marbles.firstIndexOf(n);
+		return this.marbles.firstIndexOf(n)+1;
 	}
 
 	public static void main(String[] args) {
 		
-		Marbles m = new Marbles();
+		Marbles m;
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		
@@ -42,10 +45,14 @@ public class Marbles {
 			String[] caseLine = br.readLine().split(" ");
 			int caseNum = 1;
 			while(!caseLine[0].equals("0")&&!caseLine[1].equals("0")) {
-				bw.write("CASE# " + caseNum);
+				m = new Marbles();
+				bw.write("CASE# " + caseNum + "\n");
 				for(int i=0;i<Integer.parseInt(caseLine[0]);i++) m.addMarble(Integer.parseInt(br.readLine()));
 				for(int i=0; i<Integer.parseInt(caseLine[1]);i++) {
-					bw.write(m.findMarble(Integer.parseInt(br.readLine())));
+					int Q = Integer.parseInt(br.readLine());
+					int position = m.findMarble(Q);
+					if(position <1) bw.write(Q + " not found" + "\n");
+					else bw.write(Q + " found at " + m.findMarble(Q)+"\n");
 					bw.flush();
 				}
 				caseNum++;

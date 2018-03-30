@@ -116,8 +116,10 @@ public class ArraybasedList<E> extends List<E> {
 				E[] newArray = (E[] ) new Object[this.capacity];			// Create a new array with the new capacity to store the actual list minus the deleted element.
 				for(int i=0; i<index; i++)							// Copy the data which have indexes smaller than the index of the removed element.
 					newArray[i] = this.list[i];
+				removedElement = this.get(index);					// Store the element to remove in removedElement variable.
 				for(int i=index+1; i<this.size; i++) 					// Copy the rest of existing data, tha is before the deleted element.
-					newArray[i+1] = this.list[i];	
+					newArray[i+1] = this.list[i];
+				this.list = newArray;								// Set the array without the removed element as the list.
 			}
 			this.decrementSize(1);								// Decrement the size in 1
 		}												
