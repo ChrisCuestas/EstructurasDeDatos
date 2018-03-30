@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
-import ed2018.LinkedList;
 import ed2018.Queue;
 
 public class ThrowingCardsAwayGame {
@@ -33,6 +32,7 @@ public class ThrowingCardsAwayGame {
 		String discardedCards = "Discarded cards: ";
 		while(!this.discardedCards.isEmpty()) {
 			discardedCards += this.discardedCards.dequeue();
+			if(this.discardedCards.getSize()!=0) discardedCards +=", ";
 		}
 		return discardedCards;
 	}
