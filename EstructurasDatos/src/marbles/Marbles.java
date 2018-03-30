@@ -58,6 +58,8 @@ public class Marbles {
 				caseNum++;
 				caseLine = br.readLine().split(" ");
 			}
+			br.close();
+			bw.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
