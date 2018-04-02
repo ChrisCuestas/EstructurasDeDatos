@@ -31,7 +31,7 @@ public class Marbles {
 		}else this.marbles.insert(n);
 	}
 	
-	public int findMarble(int n) {
+	public int findMarble(int n) {//Mejorar con Busqueda binaria
 		return this.marbles.firstIndexOf(n)+1;
 	}
 
