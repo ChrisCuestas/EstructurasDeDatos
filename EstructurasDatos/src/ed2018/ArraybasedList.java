@@ -23,6 +23,13 @@ public class ArraybasedList<E> extends List<E> {
 		this.capacity = ArraybasedList.initialCapacity;
 		this.list = (E[] ) new Object[ArraybasedList.initialCapacity];
 	}
+	
+	@SuppressWarnings("unchecked")
+	public ArraybasedList(int n) {
+		super();
+		this.capacity = n;
+		this.list = (E[] ) new Object[n];
+	}
 
 	public int getCapacity() {
 		return capacity;
