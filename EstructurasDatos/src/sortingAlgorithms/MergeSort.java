@@ -96,6 +96,7 @@ public class MergeSort {
 			
 			bw.write(ms.printSortedArray()+"\n");
 			bw.flush();
+			
 			bw.close();
 		}catch(IOException e) {
 			e.printStackTrace();

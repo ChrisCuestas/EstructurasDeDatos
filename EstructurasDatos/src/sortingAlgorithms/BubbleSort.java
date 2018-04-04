@@ -43,6 +43,7 @@ public class BubbleSort {
 		BubbleSort bs;
 		
 		try {
+			
 			String[] newString = br.readLine().split(","); 
 			br.close();
 			
