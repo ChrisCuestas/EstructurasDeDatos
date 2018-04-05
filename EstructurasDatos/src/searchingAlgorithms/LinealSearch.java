@@ -1,4 +1,4 @@
-package sorting_searchingAlgorithms;
+package searchingAlgorithms;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

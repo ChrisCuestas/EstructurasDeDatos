@@ -29,7 +29,7 @@ public class QuickSort {
 		else {
 			int pivot = array[0];
 			for(int i=0; i<array.length; i++) {
-				//Complete
+				//TODO:Complete
 			}
 		}
 	}
