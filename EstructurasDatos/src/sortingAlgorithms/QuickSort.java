@@ -15,23 +15,32 @@ public class QuickSort {
 	}
 	
 	public void sort() {
-		this.array= sort(this.array);
+		sort(0,this.array.length-1);
 	}
 	
-	public int[] sort(int[] array) {
-		boolean isSorted=true;
-		for(int j=0;j<array.length-1;j++) {
-			if(!(array[j]>array[j+1])) {
-				 isSorted=false;
-			} 
-		}
-		if(isSorted)return array;
-		else {
-			int pivot = array[0];
-			for(int i=0; i<array.length; i++) {
-				//TODO:Complete
+	public void sort(int start, int end) {
+		int pivot=start;
+		for(int i=pivot; i<end; i++) 
+			if(array[i]<=array[i+1]) pivot++;
+		if(pivot<end) {
+			int storeIndex = pivot+1;
+			for(int i=storeIndex; i<end+1; i++) {
+				if(array[i]<array[pivot]) {
+					swap(array[storeIndex],array[i]);
+					storeIndex++;
+				}
 			}
+			swap(array[pivot],array[storeIndex-1]);
+			sort(start,storeIndex-1);
+			sort(storeIndex,end);
 		}
+		
+	}
+	
+	private void swap(int a, int b) {
+		int temp= array[a];
+		array[a]= array[b];
+		array[b]=temp;
 	}
 
 	public String printSortedArray() {
