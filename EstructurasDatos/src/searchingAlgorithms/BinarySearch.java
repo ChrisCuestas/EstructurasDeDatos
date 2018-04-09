@@ -1,4 +1,4 @@
-package searchingAlgorithms;
+package data;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -14,7 +14,7 @@ public class BinarySearch {
 		this.array = array;
 	}
 	
-	public int search(int x) {
+	public int search1(int x) {
 		int lowerBound = 0;
 		int upperBound = this.array.length-1;
 		int index = -1;
@@ -23,16 +23,32 @@ public class BinarySearch {
 			if (x==this.array[middlePoint]) {
 				index = middlePoint;
 				break;
-			} else if(x<this.array[middlePoint]){
+			} else if(x<this.array[middlePoint])
 				upperBound=middlePoint-1;
-			} else {
-				lowerBound=middlePoint+1;
-			}
+			else lowerBound=middlePoint+1;
 		}
-		if(lowerBound==upperBound&&this.array[lowerBound]==x) {
+		if(lowerBound==upperBound&&this.array[lowerBound]==x) 
 			index=lowerBound;
-		}
 		return index;
+	}
+	
+	public int search2(int x) {
+		int lowerBound = 0;
+		int upperBound = this.array.length-1;
+		return search2(x, lowerBound, upperBound);
+	}
+	
+	private int search2(int x, int lB, int uB) {
+		int middlePoint = (lB+uB)/2;
+		if(lB==uB) {
+			if (x==this.array[middlePoint]) 
+				return middlePoint;
+			else return -1; 
+		} else if(x==this.array[middlePoint])
+				return middlePoint;
+			else if(x<this.array[middlePoint])
+					return search2(x,lB,middlePoint);
+				else return search2(x,middlePoint+1,uB);
 	}
 
 	public static void main(String[] args) {
@@ -52,7 +68,7 @@ public class BinarySearch {
 			
 			bs = new BinarySearch(newArray);
 			
-			bw.write(bs.search(Integer.parseInt(br.readLine()))+"\n");
+			bw.write(bs.search2(Integer.parseInt(br.readLine()))+"\n");
 			bw.flush();
 			bw.close();
 			br.close();
