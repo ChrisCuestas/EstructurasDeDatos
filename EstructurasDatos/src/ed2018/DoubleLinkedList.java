@@ -106,14 +106,14 @@ public class DoubleLinkedList<E> extends List<E> {
 			else {
 				int middleIndex = (lb+ub)/2;
 				if(node.value>x) {
-					for(int i=middleIndex; i>(middleIndex+ub)/2; i++) {
+					for(int i=middleIndex; i<(middleIndex+ub)/2; i++) {
 						node=node.nextNode;
 					}
 					return binarySearch(x,middleIndex+1,ub, node);
 				}
 				else {
-					for(int i=middleIndex; i<(middleIndex+lb)/2; i++) {
-						node=node.nextNode;
+					for(int i=middleIndex; i>(middleIndex+lb)/2; i++) {
+						node=node.lastNode;
 					}
 					return binarySearch(x,lb,middleIndex-1, node);
 				}
