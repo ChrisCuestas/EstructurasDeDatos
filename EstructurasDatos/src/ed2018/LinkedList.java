@@ -157,6 +157,38 @@ public class LinkedList<E> extends List<E> {
 		return -1;
 	}	
 	
+	public Node<E> binarySearch(int value) {
+		int index= (super.getSize()-1)/2;
+		Node<E> node= this.head;
+		for(int i=0; i<index; i++) {
+			node=node.nextNode;
+		}
+		return binarySearch(value, 0, this.getSize()-1, node );
+	}
+
+	private Node<E> binarySearch(int x, int lb,int ub, Node<E> node) {
+		if(node!=null) {
+			if(node.value==x) return node;
+			else {
+				int middleIndex = (lb+ub)/2;
+				if(node.value>x) {
+					for(int i=middleIndex; i<(middleIndex+ub)/2; i++) {
+						node=node.nextNode;
+					}
+					return binarySearch(x,middleIndex+1,ub, node);
+				}
+				else {
+					node =  this.head;
+					for(int i=0; i>(middleIndex+lb)/2; i++) {
+						node=node.nextNode;
+					}
+					return binarySearch(x,lb,middleIndex-1, node);
+				}
+			}
+			
+		} else return null;
+	}
+	
 	public void printList() {
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		Node<E> temp = this.head;
