@@ -1,40 +1,76 @@
 package ed2018;
 
-public class DoubleLinkedList<E> extends List<E> {
-
-	class Node<T> {
-		T element;
-		int value;
-		Node<T> nextNode;
-		Node<T> lastNode;
-		public Node(T element, Node<T> lastNode,  Node<T> nextNode, int value) {
-			super();
-			this.element = element;
-			this.nextNode = nextNode;
-			this.lastNode = lastNode;
-			this.value = value;
-		}
+public class DoubleLinkedList<E> {
+	
+	private Node<E> head;
+	private Node<E> tail;
+	private int size;
+	
+	public DoubleLinkedList() {
+		super();
+		this.head = null;
+		this.tail = null;
+		this.size=0;
 	}
 	
-	Node<E> head;
-	Node<E> tail;
+	public int getSize() {
+		return this.size;
+	}
 	
-	@Override
+	protected void setSize(int size) {
+		this.size=size;
+	}
+	
+	public void incrementSize(int increment) {
+		this.setSize(this.getSize()+increment);
+	}
+	
+	public void decrementSize(int decrement) {
+		this.setSize(this.getSize()-decrement);
+	}
+	
+	public boolean isEmpty() {
+		return this.size==0;
+	}
+	
+	public void insertFirst(E element, int value) {
+		this.insert(0, element, value);
+	};
+	
+	public void insert(E element, int value) {
+		this.insert(this.getSize(), element, value);
+	}
+	
+	public E getFirst() {
+		return this.get(0).element;
+	}
+	
+	public E getLast() {
+		return this.get(this.getSize()-1).element;
+	}
+	
+	public E removeFirst() {
+		return this.remove(0);
+	}
+	
+	public E removeLast() {
+		return this.remove(this.getSize()-1);
+	}
+	
 	public void makeEmpty() {
 		this.head=this.tail=null;
 		this.setSize(0);
 	}
 
-	@Override
-	public boolean insert(int index, E element) {
+	public boolean insert(int index, E element, int value) {
 		Node<E> newNode;
 		if (index==0) {
-			newNode= new Node<E>(element, null, this.head, 0);
+			newNode= new Node<E>(element, null, this.head, value);
 			this.head.lastNode=newNode;
 			this.head=newNode;
 			return true;
 		}else if(index==this.size-1) {
-			newNode= new Node<E>(element, this.tail, null, 0);
+			newNode= new Node<E>(element, this.tail, null, value);
 			this.tail.nextNode=newNode;
 			this.tail=newNode; 
 			return true;
@@ -60,11 +96,10 @@ public class DoubleLinkedList<E> extends List<E> {
 		return false;
 	}
 
-	@Override
-	public E get(int index) {
+	public Node<E> get(int index) {
 		if (index>this.size||index<0) return null; 				// If the given index < 0 or index > size, do not insert.
-		if(index<=this.size+1) return this.getLeft(index).element;
-		else return this.getRight(index).element;
+		if(index<=this.size+1) return this.getLeft(index);
+		else return this.getRight(index);
 	}
 	
 	private Node<E> getLeft(int index) {
@@ -83,13 +118,11 @@ public class DoubleLinkedList<E> extends List<E> {
 		return node;
 	}
 
-	@Override
 	public E remove(int index) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public E replace(int index, E newElement) {
 		if (index>this.size||index<0) return null; 				// If the given index < 0 or index > size, do not insert.
 		Node<E> node;
@@ -116,14 +149,13 @@ public class DoubleLinkedList<E> extends List<E> {
 		return node;
 	}
 
-	@Override
 	public int firstIndexOf(E element) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 	
 	public Node<E> binarySearch(int value) {
-		int index= (super.getSize()-1)/2;
+		int index= (this.getSize()-1)/2;
 		Node<E> node= this.head;
 		for(int i=0; i<index; i++) {
 			node=node.nextNode;
