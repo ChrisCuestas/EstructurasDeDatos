@@ -21,7 +21,8 @@ public class QuickSort {
 	public void sort(int start, int end) {
 		int pivot=start;
 		for(int i=pivot; i<end; i++) 
-			if(array[i]<=array[i+1]) pivot++;
+			if(array[i]<=array[i+1]) 
+				pivot++;
 			else break;
 		if(pivot<end) {
 			int storeIndex = pivot+1;
@@ -35,7 +36,6 @@ public class QuickSort {
 			sort(start,storeIndex-1);
 			sort(storeIndex,end);
 		}
-		
 	}
 	
 	private void swap(int a, int b) {
@@ -48,9 +48,8 @@ public class QuickSort {
 
 	public String printSortedArray() {
 		String line = "";
-		for(int i: this.array) {
+		for(int i: this.array) 
 			line += i+ ", ";
-		}
 		return line;
 	}
 
@@ -65,9 +64,8 @@ public class QuickSort {
 			
 			int newSize= newString.length;
 			int[] newArray = new int[newSize];
-			for(int i=0; i<newSize; i++) {
+			for(int i=0; i<newSize; i++)
 				newArray[i]=Integer.parseInt(newString[i]);
-			}
 			
 			qs = new QuickSort(newArray);
 			qs.sort();
