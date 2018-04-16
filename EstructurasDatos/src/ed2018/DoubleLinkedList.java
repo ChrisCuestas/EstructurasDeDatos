@@ -27,7 +27,21 @@ public class DoubleLinkedList<E> extends List<E> {
 
 	@Override
 	public boolean insert(int index, E element) {
-		// TODO Auto-generated method stub
+		if (index<this.size/2) {
+			Node<E> node = this.head;
+			for(int i=0; i<index-1;i++)
+				node = node.nextNode;
+			Node<E> newNode = new Node<E>(element, node, node.nextNode, -1);
+			node.nextNode.lastNode=newNode;
+			node.nextNode=newNode;
+		}else {
+			Node<E> node = this.tail;
+			for(int i=this.size; i>index+1;i--)
+				node = node.lastNode;
+			Node<E> newNode = new Node<E>(element, node.lastNode, node, -1);
+			node.lastNode.nextNode=newNode;
+			node.lastNode=newNode;
+		}
 		return false;
 	}
 
