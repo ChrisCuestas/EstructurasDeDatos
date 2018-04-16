@@ -20,11 +20,11 @@ public class ThrowingCardsAwayGame {
 
 	public void play(int n) {
 		for(int i=1; i<n+1; i++) {
-			this.deck.insert(i);
+			this.deck.insert(i,-1);
 		}
 		while(deck.getSize()>1) {
-			this.discardedCards.enqueue(this.deck.dequeue());
-			this.deck.insert(this.deck.dequeue());
+			this.discardedCards.enqueue(this.deck.dequeue(),-1);
+			this.deck.insert(this.deck.dequeue(),-1);
 		}
 	}
 	
