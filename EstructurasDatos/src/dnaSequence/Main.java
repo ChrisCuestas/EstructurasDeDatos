@@ -17,7 +17,7 @@ public class Main {
 			String input = br.readLine();
 			while(input!=null) {
 				String[] data= input.split(",");
-				sequences.insert(new Sequence(data[0], data[1], Integer.parseInt(data[2]),Integer.parseInt(data[3])));
+				sequences.insert(new Sequence(data[0], data[1], Integer.parseInt(data[2]),Integer.parseInt(data[3])),-1);
 				input=br.readLine();
 			}
 			sequences.printList();

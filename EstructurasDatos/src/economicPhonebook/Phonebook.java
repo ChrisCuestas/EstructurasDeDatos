@@ -27,10 +27,10 @@ public class Phonebook {
 					stack.push(this.phonebook.removeLast());
 					if(this.phonebook.isEmpty()) break;
 				}
-				this.phonebook.insert(number);
-				while (!stack.isEmpty()) this.phonebook.enqueue(stack.pop());
-			}else this.phonebook.enqueue(number);
-		}else this.phonebook.enqueue(number);
+				this.phonebook.insert(number,-1);
+				while (!stack.isEmpty()) this.phonebook.enqueue(stack.pop(),-1);
+			}else this.phonebook.enqueue(number,-1);
+		}else this.phonebook.enqueue(number,-1);
 	}
 	
 	public void countNumsOmitted() {
