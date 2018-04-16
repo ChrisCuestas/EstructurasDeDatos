@@ -27,20 +27,35 @@ public class DoubleLinkedList<E> extends List<E> {
 
 	@Override
 	public boolean insert(int index, E element) {
-		if (index<this.size/2) {
-			Node<E> node = this.head;
-			for(int i=0; i<index-1;i++)
-				node = node.nextNode;
-			Node<E> newNode = new Node<E>(element, node, node.nextNode, -1);
-			node.nextNode.lastNode=newNode;
-			node.nextNode=newNode;
-		}else {
-			Node<E> node = this.tail;
-			for(int i=this.size; i>index+1;i--)
-				node = node.lastNode;
-			Node<E> newNode = new Node<E>(element, node.lastNode, node, -1);
-			node.lastNode.nextNode=newNode;
-			node.lastNode=newNode;
+		Node<E> newNode;
+		if (index==0) {
+			newNode= new Node<E>(element, null, this.head, 0);
+			this.head.lastNode=newNode;
+			this.head=newNode;
+			return true;
+		}else if(index==this.size-1) {
+			newNode= new Node<E>(element, this.tail, null, 0);
+			this.tail.nextNode=newNode;
+			this.tail=newNode; 
+			return true;
+		}else if(index<this.size-1&&index>0){
+			Node<E> node;
+			if (index<this.size/2) {
+				node = this.head;
+				for(int i=0; i<index-1;i++)
+					node = node.nextNode;
+				newNode = new Node<E>(element, node, node.nextNode, -1);
+				node.nextNode.lastNode=newNode;
+				node.nextNode=newNode;
+			}else {
+				node = this.tail;
+				for(int i=this.size; i>index+1;i--)
+					node = node.lastNode;
+				newNode = new Node<E>(element, node.lastNode, node, -1);
+				node.lastNode.nextNode=newNode;
+				node.lastNode=newNode;
+			}
+			return true;
 		}
 		return false;
 	}
