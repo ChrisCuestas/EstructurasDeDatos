@@ -1,7 +1,7 @@
 package ed2018;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.OutputStreamWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -95,7 +95,7 @@ public class LinkedList<E> {
 	 */
 	public boolean insert(int index, E element, int value) {
 		if (index>this.size||index<0) return false; 				// If the given index < 0 or index > size, do not insert.
-		Node<E> newNode = new Node<E>(element, null, value);			// Else create a new node that wraps the element.
+		Node<E> newNode = new Node<E>(element, null, null, value);			// Else create a new node that wraps the element.
 		if (this.isEmpty()||index==0) {								// Special Case: When the list is empty or the element goes to the first position.
 			newNode.nextNode=this.head;									// The new node is linked with the actual head.
 			this.setHead(newNode);										// Updates the head, that is needed to point to the new node.
@@ -283,6 +283,33 @@ public class LinkedList<E> {
 			temp=temp.nextNode;
 		}
 		this.head=tempStack.getHead();
+	}
+	
+	public static void main(String[] args) {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		LinkedList<Integer> qs;
+		
+		try {
+			String[] newString = br.readLine().split(","); 
+			br.close();
+			
+			int newSize= newString.length;
+			qs = new LinkedList<Integer>();
+			for(int i=0; i<newSize; i++) {
+				int value=Integer.parseInt(newString[i]);
+				qs.insert(value,value);
+			}
+			
+			qs.quickSort();
+			
+			qs.printList();
+			bw.flush();
+			
+			bw.close();
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
 
