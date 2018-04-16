@@ -2,7 +2,7 @@ package ed2018;
 /**
  * This Queue is a LinkedList.
  * 
- * @author Christian Camilo Cuestas Ibáñez
+ * @author Christian Camilo Cuestas Ibanez
  *
  * @param <E>
  */
@@ -12,8 +12,8 @@ public class Queue<E> extends LinkedList<E> {
 		super();
 	}
 	
-	public void enqueue(E element) {
-		super.insert(this.size, element);
+	public void enqueue(E element, int value) {
+		super.insert(this.size, element, value);
 	}
 	
 	public E dequeue() {
@@ -21,6 +21,6 @@ public class Queue<E> extends LinkedList<E> {
 	}
 	
 	public E peekFront() {
-		return super.get(0);
+		return super.get(0).element;
 	}
 }
