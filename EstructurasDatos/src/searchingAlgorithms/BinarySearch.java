@@ -1,4 +1,4 @@
-package data;
+package searchingAlgorithms;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
