@@ -6,15 +6,16 @@ package ed2018;
  * This structure extends an abstract List class, and implements all the
  * List' abstract methods.
  * 
- * @author Christian Camilo Cuestas Ibáñez
+ * @author Christian Camilo Cuestas Ibanez
  *
  * @param <E>:	This is a generic class with which the list will work.
  */
 
-public class ArraybasedList<E> extends List<E> {
+public class ArraybasedList<E>  {
 
 	private static final int initialCapacity = 10;
 	private int capacity;
+	protected int size;
 	private E[] list;
 	
 	@SuppressWarnings("unchecked")
@@ -22,6 +23,7 @@ public class ArraybasedList<E> extends List<E> {
 		super();
 		this.capacity = ArraybasedList.initialCapacity;
 		this.list = (E[] ) new Object[ArraybasedList.initialCapacity];
+		this.size=0;
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -31,6 +33,50 @@ public class ArraybasedList<E> extends List<E> {
 		this.list = (E[] ) new Object[n];
 	}
 
+	public int getSize() {
+		return this.size;
+	}
+	
+	protected void setSize(int size) {
+		this.size=size;
+	}
+	
+	public void incrementSize(int increment) {
+		this.setSize(this.getSize()+increment);
+	}
+	
+	public void decrementSize(int decrement) {
+		this.setSize(this.getSize()-decrement);
+	}
+	
+	public boolean isEmpty() {
+		return this.size==0;
+	}
+	
+	public void insertFirst(E element) {
+		this.insert(0, element);
+	};
+	
+	public void insert(E element) {
+		this.insert(this.getSize(), element);
+	}
+	
+	public E getFirst() {
+		return this.get(0);
+	}
+	
+	public E getLast() {
+		return this.get(this.getSize()-1);
+	}
+	
+	public E removeFirst() {
+		return this.remove(0);
+	}
+	
+	public E removeLast() {
+		return this.remove(this.getSize()-1);
+	}
+	
 	public int getCapacity() {
 		return capacity;
 	}
@@ -56,7 +102,6 @@ public class ArraybasedList<E> extends List<E> {
 	 * array with the initialCapacity. 
 	 */
 	@SuppressWarnings("unchecked")
-	@Override
 	public void makeEmpty() {
 		this.setList((E[] ) new Object[ArraybasedList.initialCapacity]);
 		this.setSize(0);
@@ -71,7 +116,6 @@ public class ArraybasedList<E> extends List<E> {
 	 * @return	true, when the new element was correctly inserted.
 	 */
 	@SuppressWarnings("unchecked")
-	@Override
 	public boolean insert(int index, E element) {
 		if (index>this.size||index<0) return false; 				// If the given index is out of the boundaries, do not insert did not succeed.
 															// If the given index is in the boundaries...
@@ -98,7 +142,6 @@ public class ArraybasedList<E> extends List<E> {
 	 * @return the element in the index if possible.
 	 * @return null when the index does not exist.
 	 */
-	@Override
 	public E get(int index) {
 		if (index<0||index>=this.size) return null;
 		return this.list[index];
@@ -112,7 +155,6 @@ public class ArraybasedList<E> extends List<E> {
 	 * @return the element in the index, other wise.
 	 */
 	@SuppressWarnings("unchecked")
-	@Override
 	public E remove(int index) {
 		E removedElement = null;							// Instantiate removedElement with null.
 		if (index<this.size&&index>=0) {							// If the index exists:
@@ -141,7 +183,6 @@ public class ArraybasedList<E> extends List<E> {
 	 * @return null, if index does not exists.
 	 * @return the replaced element, in other case.
 	 */
-	@Override
 	public E replace(int index, E newElement) {
 		if (index<0||index>=this.size) return null;		// Return null if index does not exists.
 		E oldElement = this.get(index);							// Other wise, get the element that is in the index position.
@@ -156,7 +197,6 @@ public class ArraybasedList<E> extends List<E> {
 	 * @return -1 if the element isn't in the list
 	 * @return i, the index of the first matching.
 	 */
-	@Override
 	public int firstIndexOf(E element) {
 		for(int i = 0; i<this.size;i++)					// for each element of the list
 			if (this.list[i].equals(element)) return i;			// if is equal to the element given as a parameter return the index of the element.
