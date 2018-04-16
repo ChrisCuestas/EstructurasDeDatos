@@ -284,33 +284,6 @@ public class LinkedList<E> {
 		}
 		this.head=tempStack.getHead();
 	}
-	
-	public static void main(String[] args) {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-		LinkedList<Integer> qs;
-		
-		try {
-			String[] newString = br.readLine().split(","); 
-			br.close();
-			
-			int newSize= newString.length;
-			qs = new LinkedList<Integer>();
-			for(int i=0; i<newSize; i++) {
-				int value=Integer.parseInt(newString[i]);
-				qs.insert(value,value);
-			}
-			
-			qs.quickSort();
-			
-			qs.printList();
-			bw.flush();
-			
-			bw.close();
-		}catch(IOException e) {
-			e.printStackTrace();
-		}
-	}
 }
 
 class LinkedStack<E> extends LinkedList<E> {
