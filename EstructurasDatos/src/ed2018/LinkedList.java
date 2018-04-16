@@ -19,11 +19,13 @@ public class LinkedList<E> extends List<E> {
 
 	class Node<T> {
 		T element;
+		int value;
 		Node<T> nextNode;
-		public Node(T element, Node<T> nextNode) {
+		public Node(T element, Node<T> nextNode, int value) {
 			super();
 			this.element = element;
 			this.nextNode = nextNode;
+			this.value = value;
 		}
 		@Override
 		public String toString(){
@@ -31,7 +33,7 @@ public class LinkedList<E> extends List<E> {
 		}
 		
 		public Node<T> clone(){
-			return new Node<T>(this.element, this.nextNode.clone());
+			return new Node<T>(this.element, this.nextNode.clone(),this.value);
 		}
 	}
 	
@@ -66,7 +68,7 @@ public class LinkedList<E> extends List<E> {
 	@Override
 	public boolean insert(int index, E element) {
 		if (index>this.size||index<0) return false; 				// If the given index < 0 or index > size, do not insert.
-		Node<E> newNode = new Node<E>(element, null);				// Else create a new node that wraps the element.
+		Node<E> newNode = new Node<E>(element, null,-1);				// Else create a new node that wraps the element.
 		if (this.isEmpty()||index==0) {								// Special Case: When the list is empty or the element goes to the first position.
 			newNode.nextNode=this.head;									// The new node is linked with the actual head.
 			this.setHead(newNode);										// Updates the head, that is needed to point to the new node.

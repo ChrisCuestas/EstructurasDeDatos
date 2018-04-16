@@ -4,13 +4,15 @@ public class DoubleLinkedList<E> extends List<E> {
 
 	class Node<T> {
 		T element;
+		int value;
 		Node<T> nextNode;
 		Node<T> lastNode;
-		public Node(T element, Node<T> lastNode,  Node<T> nextNode) {
+		public Node(T element, Node<T> lastNode,  Node<T> nextNode, int value) {
 			super();
 			this.element = element;
 			this.nextNode = nextNode;
 			this.lastNode = lastNode;
+			this.value = value;
 		}
 	}
 	
