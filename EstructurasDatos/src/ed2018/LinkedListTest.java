@@ -25,13 +25,13 @@ public class LinkedListTest {
 		Grade g3= new Grade("test1", 0.5);
 		Grade g4= new Grade("test2", 2.5);
 		
-		grades.insertFirst(g1);
+		grades.insertFirst(g1,-1);
 		grades.printList();
-		grades.insertFirst(g2);
+		grades.insertFirst(g2,-1);
 		grades.printList();
-		grades.insert(g3);
+		grades.insert(g3,-1);
 		grades.printList();
-		grades.insert(1, g4);
+		grades.insert(1, g4, -1);
 		grades.printList();
 		grades.remove(2);
 		grades.printList();
