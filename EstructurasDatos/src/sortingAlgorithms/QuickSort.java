@@ -22,15 +22,16 @@ public class QuickSort {
 		int pivot=start;
 		for(int i=pivot; i<end; i++) 
 			if(array[i]<=array[i+1]) pivot++;
+			else break;
 		if(pivot<end) {
 			int storeIndex = pivot+1;
-			for(int i=storeIndex; i<end+1; i++) {
+			for(int i=pivot+1; i<end+1; i++) {
 				if(array[i]<array[pivot]) {
-					swap(array[storeIndex],array[i]);
+					swap(i,storeIndex);
 					storeIndex++;
 				}
 			}
-			swap(array[pivot],array[storeIndex-1]);
+			swap(pivot,storeIndex-1);
 			sort(start,storeIndex-1);
 			sort(storeIndex,end);
 		}
@@ -38,9 +39,11 @@ public class QuickSort {
 	}
 	
 	private void swap(int a, int b) {
-		int temp= array[a];
-		array[a]= array[b];
-		array[b]=temp;
+		if(a!=b) {
+			int temp= array[a];
+			array[a]= array[b];
+			array[b]=temp;
+		}
 	}
 
 	public String printSortedArray() {
