@@ -2,7 +2,7 @@ package ed2018;
 
 public class BinaryTree<E> {
 
-	BinaryTreeNode<E> root;
+	TreeNode<E> root;
 	
 	public BinaryTree() {
 		// TODO Auto-generated constructor stub

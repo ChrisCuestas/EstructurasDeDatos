@@ -1,18 +1,18 @@
 package ed2018;
 
-public class BinaryTreeNode<E> {
+public class TreeNode<E> {
 
 	E element;
-	BinaryTreeNode<E> left;
-	BinaryTreeNode<E> right;
+	TreeNode<E> left;
+	TreeNode<E> right;
 	
-	public BinaryTreeNode(E element) {
+	public TreeNode(E element) {
 		this.element = element;
 		this.left = null;
 		this.right = null;
 	}
 	
-	public BinaryTreeNode(E element, BinaryTreeNode<E> leftTree, BinaryTreeNode<E> rightTree) {
+	public TreeNode(E element, TreeNode<E> leftTree, TreeNode<E> rightTree) {
 		this.element = element;
 		this.left = leftTree;
 		this.right = rightTree;
