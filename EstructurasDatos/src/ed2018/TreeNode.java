@@ -2,10 +2,10 @@ package ed2018;
 
 public class TreeNode<E> {
 
-	private E element;
-	private int value;
-	private TreeNode<E> left;
-	private TreeNode<E> right;
+	E element;
+	int value;
+	TreeNode<E> left;
+	TreeNode<E> right;
 	
 	public TreeNode(E element, int value) {
 		this.value = value;
@@ -21,7 +21,7 @@ public class TreeNode<E> {
 		this.right = left;
 	}
 
-	public E getElement() {
+	/*public E getElement() {
 		return element;
 	}
 
@@ -51,7 +51,7 @@ public class TreeNode<E> {
 
 	public void setRight(TreeNode<E> right) {
 		this.right = right;
-	}
+	}*/
 	
 	public TreeNode<E> clone(){
 		return new TreeNode<E>(this.element, this.value);

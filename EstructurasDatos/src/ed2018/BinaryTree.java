@@ -21,8 +21,8 @@ public class BinaryTree<E> {
 	}
 	
 	public void setRoot(E element, int value) {
-		this.root.setElement(element);
-		this.root.setValue(value);
+		this.root.element=element;
+		this.root.value=value;
 	}
 	
 	public void setRoot(TreeNode<E> root) {
@@ -30,57 +30,62 @@ public class BinaryTree<E> {
 	}
 
 	public boolean insert(E element, int value) {
-		return insert(this.root, element, value);
+		if(this.root==null) {
+			this.root = new TreeNode<E>(element, value);
+			return true;
+		} else return insert(this.root, element, value);
 	}
 
 	private boolean insert(TreeNode<E> node, E element, int value) {
-		if(value==node.getValue()) return false;
-		if(node.getValue()==-1) {
-			node.setElement(element);
-			node.setValue(value);
+		if(value==node.value) return false;
+		if(node.value==-1) {
+			node.element=element;
+			node.value=value;
 			return true;
 		}
-		if(value<node.getValue()) {
-			if(node.getLeft()==null) {
-				node.setLeft(new TreeNode<E>(element, value));
+		if(value<node.value) {
+			if(node.left==null) {
+				node.left=new TreeNode<E>(element, value);
 				return true;
 			}
-			else return insert(node.getLeft(), element, value);
+			else return insert(node.left, element, value);
 		}else {
-			if(node.getRight()==null) {
-				node.setRight(new TreeNode<E>(element, value));
+			if(node.right==null) {
+				node.right=new TreeNode<E>(element, value);
 				return true;
 			}
-			else return insert(node.getRight(), element, value);
+			else return insert(node.right, element, value);
 		}
 	}
 
 	public TreeNode<E> removeNode(int value) {
 		TreeNode<E> node = this.getNode(value);
-		TreeNode<E> parent = parentOf(node.getValue());
+		if (node==null) return null;
+		TreeNode<E> parent = parentOf(node.value);
 		TreeNode<E> nodeClone= node.clone();
- 		if(node.getLeft()==null&&node.getRight()==null) {
- 			if(parent.getValue()<node.getValue()) 
- 				parent.setRight(null);
- 			else parent.setLeft(null);
+ 		if(node.left==null && node.right==null) {
+ 			if(parent.value<node.value) 
+ 				parent.right=null;
+ 			else parent.left=null;
  		}
 		else {
-			if(node.getLeft()==null)
-				if(parent.getValue()<node.getValue()) 
-	 				parent.setRight(node.getRight());
-	 			else parent.setLeft(node.getRight());
-			else if(node.getRight()==null)
-				if(parent.getValue()<node.getValue()) 
-	 				parent.setRight(node.getLeft());
-	 			else parent.setLeft(node.getLeft());
+			if(node.left==null)
+				if(parent.value<node.value) 
+	 				parent.right=node.right;
+	 			else parent.left=node.right;
+			else if(node.right==null)
+				if(parent.value<node.value) 
+	 				parent.right=node.left;
+	 			else parent.left=node.left;
 			else {
-				TreeNode<E> next = getNext(node.getValue());
-				next.setLeft(node.getLeft());
-				next.setRight(node.getRight());
-				if(parent.getValue()<node.getValue()) 
-	 				parent.setRight(next);
-	 			else parent.setLeft(next);
-				this.removeNode(next.getValue());
+				TreeNode<E> next = getNext(node.value);
+				next.left=node.left;
+				next.right=node.right;
+				if(parent.value<node.value) 
+	 				parent.right=next;
+	 			else if(parent.value<node.value) 
+	 				parent.left=next;
+				this.removeNode(next.value);
 			}
 		}
  		return nodeClone;
@@ -88,22 +93,35 @@ public class BinaryTree<E> {
 	
 	public TreeNode<E> parentOf(int value) {
 		TreeNode<E> node= this.getRoot();
-		if(node.getValue()==value) return null;
+		if(node.value==value) return node;
 		else return parentOf(value,node);
 	}
 	
 	private TreeNode<E> parentOf(int value, TreeNode<E> node) {
 		if (node == null)
 			throw new IllegalArgumentException("This node is null");
-		if(node.getLeft().getValue()==value||node.getRight().getValue()==value) return node;
-		if(node.getValue()<value) return parentOf(value, node.getRight());
-		else return parentOf(value,node.getLeft());
+		if(node.left==null&&node.right==null) return null;
+		if(node.left==null) {
+			if (node.right.value==value)
+				return node; 
+			if(node.value<value) return parentOf(value, node.right);
+			else return null;
+		}
+		if(node.right==null) {
+			if (node.left.value==value)
+				return node;
+			if(node.value>value) return parentOf(value, node.left);
+			else return null;
+		}
+		if(node.left.value==value||node.right.value==value) return node;
+		if(node.value<value) return parentOf(value, node.right);
+		else return parentOf(value,node.left);
 	}
 
 	public TreeNode<E> getNext(int value) {
-		TreeNode<E> node = this.getNode(value).getRight();
-		while(node.getLeft()!=null) {
-			node.getLeft();
+		TreeNode<E> node = this.getNode(value).right;
+		while(node.left!=null) {
+			node=node.left;
 		}
 		return node.clone();
 	}
@@ -114,41 +132,41 @@ public class BinaryTree<E> {
 
 	private TreeNode<E> getNode(int value, TreeNode<E> node) {
 		if (node == null)
-			throw new IllegalArgumentException("This node is null");
-		if(node.getValue()==value) return node;
-		if(value<node.getValue()) return getNode(value, node.getLeft());
-		else return getNode(value,node.getRight());
+			return null;
+		if(node.value==value) return node;
+		if(value<node.value) return getNode(value, node.left);
+		else return getNode(value,node.right);
 	}
 	
 
 	public TreeNode<E> removeLeftSubtree(TreeNode<E> node) {
 		if (root == null)
 			throw new IllegalArgumentException("This tree is empty");
-		TreeNode<E> removedNode= node.getLeft();
-		node.setLeft(null);
+		TreeNode<E> removedNode= node.left;
+		node.left=null;
 		return removedNode;
 	}
 
 	public TreeNode<E> removeRightSubtree(TreeNode<E> node) {
 		if (root == null)
 			throw new IllegalArgumentException("This tree is empty");
-		TreeNode<E> removedNode= node.getRight();
-		node.setRight(null);
+		TreeNode<E> removedNode= node.right;
+		node.right=null;
 		return removedNode;
 	}
 
 	public TreeNode<E> findMin() {
 		TreeNode<E> node = this.getRoot();
-		while(node.getLeft()!=null) {
-			node.getLeft();
+		while(node.left!=null) {
+			node = node.left;
 		}
 		return node;
 	}
 
 	public TreeNode<E> findMax() {
 		TreeNode<E> node = this.getRoot();
-		while(node.getRight()!=null) {
-			node.getRight();
+		while(node.right!=null) {
+			node = node.right;
 		}
 		return node;
 	}
@@ -160,8 +178,8 @@ public class BinaryTree<E> {
 	public void preOrder(TreeNode<E> node) {
 		if(node != null) {
 			System.out.println(node.toString());
-			preOrder(node.getLeft());
-			preOrder(node.getRight());
+			preOrder(node.left);
+			preOrder(node.right);
 		}
 	}
 
@@ -171,9 +189,9 @@ public class BinaryTree<E> {
 	
 	public void inOrder(TreeNode<E> node) {
 		if(node != null) {
-			inOrder(node.getLeft());
+			inOrder(node.left);
 			System.out.println(node.toString());
-			inOrder(node.getRight());
+			inOrder(node.right);
 		}
 	}
 
@@ -183,8 +201,8 @@ public class BinaryTree<E> {
 	
 	public void postOrder(TreeNode<E> node) {
 		if(node != null) {
-			postOrder(node.getLeft());
-			postOrder(node.getRight());
+			postOrder(node.left);
+			postOrder(node.right);
 			System.out.println(node.toString());
 		}
 	}
@@ -206,8 +224,8 @@ public class BinaryTree<E> {
 	}
 
 	private boolean contains(E element, TreeNode<E> node) {
-		if (element.equals(node.getElement())) return false;
-		else return contains(element, node.getLeft())||contains(element, node.getRight());
+		if (element.equals(node.element)) return false;
+		else return contains(element, node.left)||contains(element, node.right);
 	}
 
 	public void makeEmpty() {
@@ -229,11 +247,22 @@ public class BinaryTree<E> {
 		arbol.insert(4,81);
 		System.out.println("InOrder:");
 		arbol.inOrder();
+		/*System.out.println("PreOrder:");
+		arbol.preOrder();
+		System.out.println("PostOrder:");
+		arbol.postOrder();*/
+		arbol.removeNode(81);
+		System.out.println("InOrder:");
+		arbol.inOrder();
+		arbol.removeNode(82);
+		System.out.println("InOrder:");
+		arbol.inOrder();
+		arbol.removeNode(2);
+		System.out.println("InOrder:");
+		arbol.inOrder();
 		System.out.println("PreOrder:");
 		arbol.preOrder();
 		System.out.println("PostOrder:");
 		arbol.postOrder();
-		arbol.removeNode(81);
-		
 	}
 }
