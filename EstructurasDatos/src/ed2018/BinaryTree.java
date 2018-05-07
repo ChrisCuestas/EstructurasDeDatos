@@ -255,7 +255,7 @@ public class BinaryTree<E> {
 		System.out.println("InOrder:");
 		arbol.inOrder();
 		arbol.removeNode(82);
-		System.out.println("InOrder:");
+		/*System.out.println("InOrder:");
 		arbol.inOrder();
 		arbol.removeNode(2);
 		System.out.println("InOrder:");
@@ -263,6 +263,6 @@ public class BinaryTree<E> {
 		System.out.println("PreOrder:");
 		arbol.preOrder();
 		System.out.println("PostOrder:");
-		arbol.postOrder();
+		arbol.postOrder();*/
 	}
 }
