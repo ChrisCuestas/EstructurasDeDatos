@@ -12,6 +12,18 @@ public class Node<T> {
 		this.lastNode = lastNode;
 		this.value = value;
 }
+	public T getElement() {
+		return element;
+	}
+	public int getValue() {
+		return value;
+	}
+	public Node<T> getNextNode() {
+		return nextNode;
+	}
+	public Node<T> getLastNode() {
+		return lastNode;
+	}
 	@Override
 	public String toString(){
 		return "["+ element.toString() +"]" + "\n";

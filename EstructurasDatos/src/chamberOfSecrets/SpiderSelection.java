@@ -6,22 +6,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
-import ed2018.LinkedList;
 import ed2018.Queue;
 
 public class SpiderSelection {
 
 	private Queue<Spider> spiders;
-	
-	class Spider{
-		int position;
-		int power;
-		
-		public Spider(int power, int position) {
-			this.position = position;
-			this.power = power;
-		}
-	}
 	
 	public SpiderSelection() {
 		this.spiders= new Queue<Spider>();
@@ -33,29 +22,37 @@ public class SpiderSelection {
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		
 		try {
-			int n = Integer.parseInt(br.readLine());
-			int x = Integer.parseInt(br.readLine());
-			
 			String[] line = br.readLine().split(" ");
-			for(int i=0; i<n; i++) 
-				s.spiders.enqueue(new Spider(Integer.parseInt(line[i]), i+1));
-			int iterations = 0;
-			Queue<Spider> tempList =  new Queue<Spider>();
-			Spider greater = null;
-			while(!s.spiders.isEmpty()&&iterations<x) {
-				Spider sp = s.spiders.dequeue();
-				if(greater==null) greater = sp;
-				else {
-					if (greater.power<sp.power) {
-						
-						tempList.enqueue(greater, -1);
-						greater = 
-					}
-				}
-				tempList.enqueue(s.spiders.dequeue(), -1);
-				iterations++;
-			}
+			int n = Integer.parseInt(line[0]);
+			int x = Integer.parseInt(line[1]);
 			
+			line = br.readLine().split(" ");
+			for(int i=0; i<n; i++) 
+				s.spiders.enqueue(new Spider(Integer.parseInt(line[i]), i+1),-1);
+			
+			Queue<Spider> tempList =  new Queue<Spider>();
+			Spider greater;
+			for(int i=0; i<x; i++) {
+				greater = null;
+				int j=0;
+				while(!s.spiders.isEmpty()&&j<x) {
+					Spider sp = s.spiders.dequeue();
+					if(greater==null) greater = sp;
+					else {
+						if (greater.power<sp.power) {
+							tempList.enqueue(greater, -1);
+							greater = sp;
+						} else tempList.enqueue(sp, -1);
+					}
+					j++;
+				}
+				bw.write(greater.position + " ");
+				while(!tempList.isEmpty()) {
+					Spider tempSpider = tempList.dequeue();
+					tempSpider.power--;
+					s.spiders.enqueue(tempSpider, -1);
+				}
+			}
 			
 			bw.flush();
 			br.close();
