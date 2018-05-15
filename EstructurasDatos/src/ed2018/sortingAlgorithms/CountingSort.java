@@ -1,4 +1,4 @@
-package sortingAlgorithms;
+package ed2018.sortingAlgorithms;
 
 public class CountingSort {
 

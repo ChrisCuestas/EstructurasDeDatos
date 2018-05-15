@@ -1,4 +1,4 @@
-package dnaSequence;
+package ed2018.dnaSequence;
 
 public class Sequence{
 	

@@ -1,4 +1,4 @@
-package philosopherStone;
+package ed2018.philosopherStone;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

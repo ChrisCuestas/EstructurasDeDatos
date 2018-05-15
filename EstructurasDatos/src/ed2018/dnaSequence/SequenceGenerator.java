@@ -1,4 +1,4 @@
-package dnaSequence;
+package ed2018.dnaSequence;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;

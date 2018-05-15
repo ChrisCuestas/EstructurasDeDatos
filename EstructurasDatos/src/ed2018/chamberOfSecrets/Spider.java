@@ -1,4 +1,4 @@
-package chamberOfSecrets;
+package ed2018.chamberOfSecrets;
 
 public class Spider{
 	int position;

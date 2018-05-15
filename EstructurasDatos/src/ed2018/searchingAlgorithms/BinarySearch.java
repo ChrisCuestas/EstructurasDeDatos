@@ -1,4 +1,4 @@
-package searchingAlgorithms;
+package ed2018.searchingAlgorithms;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

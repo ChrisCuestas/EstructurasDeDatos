@@ -1,4 +1,4 @@
-package sortingAlgorithms;
+package ed2018.sortingAlgorithms;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

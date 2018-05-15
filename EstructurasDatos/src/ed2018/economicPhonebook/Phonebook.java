@@ -1,4 +1,4 @@
-package economicPhonebook;
+package ed2018.economicPhonebook;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

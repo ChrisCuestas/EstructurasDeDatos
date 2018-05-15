@@ -1,4 +1,4 @@
-package chamberOfSecrets;
+package ed2018.chamberOfSecrets;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

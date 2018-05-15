@@ -1,10 +1,9 @@
-package prisonerOfAzkaban;
+package ed2018.prisonerOfAzkaban;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-
 import ed2018.Queue;
 
 public class SillyProblem {
@@ -13,6 +12,20 @@ public class SillyProblem {
 	
 	public SillyProblem() {
 		super();
+	}
+	
+	public int largestLessThan(int index) {
+		for(int j=index-1; j>=0; j--) 
+			if(this.num.get(j).getElement()>this.num.get(index).getElement()) 
+				return j+1;
+		return -1;
+	}
+	
+	public int smallestGreaterThan(int index) {
+		for(int j=index+1; j<this.num.getSize(); j++) 
+			if(this.num.get(j).getElement()>this.num.get(index).getElement()) 
+				return j+1;
+		return -1;
 	}
 	
 	public static void main(String[] args) {
@@ -28,28 +41,12 @@ public class SillyProblem {
 			
 			Queue<Integer> sum = new Queue<Integer> ();
 			
-			for(int i=0; i<n; i++) {
-				int x=-1;
-				int y=-1;
-				
-				for(int j=i; j>0; j--) {
-					if(s.num.get(i).getElement()<s.num.get(j-1).getElement()) {
-						x=i;
-						break;
-					} else x=-1;
-				}
-				for(int j=i+1; j<n; j++) {
-					if(s.num.get(i).getElement()<s.num.get(j).getElement()) {
-						y=i+2;
-						break;
-					} else y=-1;
-				}
-				sum.enqueue(x+y, -1);
-			}
+			for(int i=0; i<n; i++) 
+				sum.enqueue(s.largestLessThan(i)+s.smallestGreaterThan(i), -1);
 			
-			while(!sum.isEmpty()) {
+			while(!sum.isEmpty()) 
 				bw.write(sum.dequeue()+" ");
-			}
+			
 			bw.flush();
 			bw.close();
 			br.close();

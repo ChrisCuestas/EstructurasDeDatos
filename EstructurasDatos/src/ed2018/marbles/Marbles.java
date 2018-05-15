@@ -1,4 +1,4 @@
-package marbles;
+package ed2018.marbles;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

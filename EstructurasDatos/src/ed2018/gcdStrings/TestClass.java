@@ -1,4 +1,4 @@
-package gcdStrings;
+package ed2018.gcdStrings;
 
 import java.util.*;
 import java.lang.Math;
