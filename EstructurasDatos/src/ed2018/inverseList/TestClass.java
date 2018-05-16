@@ -1,4 +1,4 @@
-package inverseList;
+package ed2018.inverseList;
 
 import java.util.*;
 

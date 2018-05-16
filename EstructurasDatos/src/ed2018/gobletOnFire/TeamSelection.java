@@ -1,4 +1,4 @@
-package gobletOnFire;
+package ed2018.gobletOnFire;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
