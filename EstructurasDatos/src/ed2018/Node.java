@@ -5,13 +5,21 @@ public class Node<T> {
 	int value;
 	Node<T> nextNode;
 	Node<T> lastNode;
+	
+	public Node(T element) {
+		super();
+		this.element = element;
+		this.nextNode = null;
+		this.lastNode = null;
+		this.value = -1;
+	}
 	public Node(T element, Node<T> lastNode,  Node<T> nextNode, int value) {
 		super();
 		this.element = element;
 		this.nextNode = nextNode;
 		this.lastNode = lastNode;
 		this.value = value;
-}
+	}
 	public T getElement() {
 		return element;
 	}

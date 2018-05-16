@@ -7,6 +7,20 @@ public class TreeNode<E> {
 	TreeNode<E> left;
 	TreeNode<E> right;
 	
+	public TreeNode() {
+		this.value = -1;
+		this.element = null;
+		this.left = null;
+		this.right = null;
+	}
+	
+	public TreeNode(E element) {
+		this.value = -1;
+		this.element = element;
+		this.left = null;
+		this.right = null;
+	}
+	
 	public TreeNode(E element, int value) {
 		this.value = value;
 		this.element = element;
