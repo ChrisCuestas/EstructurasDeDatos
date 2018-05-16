@@ -38,7 +38,6 @@ public class Army {
 					a.insert(Integer.parseInt(line[0]), Integer.parseInt(line[j]));
 			}
 			
-			
 			bw.flush();
 			bw.close();
 			br.close();
