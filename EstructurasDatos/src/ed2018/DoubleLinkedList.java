@@ -2,8 +2,8 @@ package ed2018;
 
 public class DoubleLinkedList<E> {
 	
-	private Node<E> head;
-	private Node<E> tail;
+	private ListNode<E> head;
+	private ListNode<E> tail;
 	private int size;
 	
 	public DoubleLinkedList() {
@@ -63,31 +63,31 @@ public class DoubleLinkedList<E> {
 	}
 
 	public boolean insert(int index, E element, int value) {
-		Node<E> newNode;
+		ListNode<E> newNode;
 		if (index==0) {
-			newNode= new Node<E>(element, null, this.head, value);
+			newNode= new ListNode<E>(element, null, this.head, value);
 			this.head.lastNode=newNode;
 			this.head=newNode;
 			return true;
 		}else if(index==this.size-1) {
-			newNode= new Node<E>(element, this.tail, null, value);
+			newNode= new ListNode<E>(element, this.tail, null, value);
 			this.tail.nextNode=newNode;
 			this.tail=newNode; 
 			return true;
 		}else if(index<this.size-1&&index>0){
-			Node<E> node;
+			ListNode<E> node;
 			if (index<this.size/2) {
 				node = this.head;
 				for(int i=0; i<index-1;i++)
 					node = node.nextNode;
-				newNode = new Node<E>(element, node, node.nextNode, -1);
+				newNode = new ListNode<E>(element, node, node.nextNode, -1);
 				node.nextNode.lastNode=newNode;
 				node.nextNode=newNode;
 			}else {
 				node = this.tail;
 				for(int i=this.size; i>index+1;i--)
 					node = node.lastNode;
-				newNode = new Node<E>(element, node.lastNode, node, -1);
+				newNode = new ListNode<E>(element, node.lastNode, node, -1);
 				node.lastNode.nextNode=newNode;
 				node.lastNode=newNode;
 			}
@@ -96,22 +96,22 @@ public class DoubleLinkedList<E> {
 		return false;
 	}
 
-	public Node<E> get(int index) {
+	public ListNode<E> get(int index) {
 		if (index>this.size||index<0) return null; 				// If the given index < 0 or index > size, do not insert.
 		if(index<=this.size+1) return this.getLeft(index);
 		else return this.getRight(index);
 	}
 	
-	private Node<E> getLeft(int index) {
-		Node<E> node= this.tail;
+	private ListNode<E> getLeft(int index) {
+		ListNode<E> node= this.tail;
 		for (int i=0; i<index;i++) {
 			node=node.nextNode;
 		}
 		return node;
 	}
 	
-	private Node<E> getRight(int index) {
-		Node<E> node= this.tail;
+	private ListNode<E> getRight(int index) {
+		ListNode<E> node= this.tail;
 		for (int i=this.size-1; i>index;i--) {
 			node=node.lastNode;
 		}
@@ -125,7 +125,7 @@ public class DoubleLinkedList<E> {
 
 	public E replace(int index, E newElement) {
 		if (index>this.size||index<0) return null; 				// If the given index < 0 or index > size, do not insert.
-		Node<E> node;
+		ListNode<E> node;
 		if(index<=this.size+1) node= this.replaceLeft(index, newElement);
 		else node = this.replaceRight(index, newElement);
 		E oldNode=node.element;
@@ -133,16 +133,16 @@ public class DoubleLinkedList<E> {
 		return oldNode;
 	}
 	
-	private Node<E> replaceLeft(int index, E newElement) {
-		Node<E> node= this.tail;
+	private ListNode<E> replaceLeft(int index, E newElement) {
+		ListNode<E> node= this.tail;
 		for (int i=0; i<index;i++) {
 			node=node.nextNode;
 		}
 		return node;
 	}
 	
-	private Node<E> replaceRight(int index, E newElement) {
-		Node<E> node= this.tail;
+	private ListNode<E> replaceRight(int index, E newElement) {
+		ListNode<E> node= this.tail;
 		for (int i=this.size-1; i>index;i--) {
 			node=node.lastNode;
 		}
@@ -154,16 +154,16 @@ public class DoubleLinkedList<E> {
 		return 0;
 	}
 	
-	public Node<E> binarySearch(int value) {
+	public ListNode<E> binarySearch(int value) {
 		int index= (this.getSize()-1)/2;
-		Node<E> node= this.head;
+		ListNode<E> node= this.head;
 		for(int i=0; i<index; i++) {
 			node=node.nextNode;
 		}
 		return binarySearch(value, 0, this.getSize()-1, node );
 	}
 
-	private Node<E> binarySearch(int x, int lb,int ub, Node<E> node) {
+	private ListNode<E> binarySearch(int x, int lb,int ub, ListNode<E> node) {
 		if(node!=null) {
 			if(node.value==x) return node;
 			else {

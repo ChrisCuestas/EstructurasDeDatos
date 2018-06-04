@@ -21,7 +21,7 @@ import java.io.OutputStreamWriter;
 public class LinkedList<E> {
 
 	protected int size;
-	Node<E> head;
+	ListNode<E> head;
 
 	public LinkedList() {
 		super();
@@ -73,11 +73,11 @@ public class LinkedList<E> {
 		return this.remove(this.getSize()-1);
 	}
 
-	public Node<E> getHead() {
+	public ListNode<E> getHead() {
 		return head;
 	}
 
-	public void setHead(Node<E> head) {
+	public void setHead(ListNode<E> head) {
 		this.head = head;
 	}
 
@@ -95,12 +95,12 @@ public class LinkedList<E> {
 	 */
 	public boolean insert(int index, E element, int value) {
 		if (index>this.size||index<0) return false; 				// If the given index < 0 or index > size, do not insert.
-		Node<E> newNode = new Node<E>(element, null, null, value);			// Else create a new node that wraps the element.
+		ListNode<E> newNode = new ListNode<E>(element, null, null, value);			// Else create a new node that wraps the element.
 		if (this.isEmpty()||index==0) {								// Special Case: When the list is empty or the element goes to the first position.
 			newNode.nextNode=this.head;									// The new node is linked with the actual head.
 			this.setHead(newNode);										// Updates the head, that is needed to point to the new node.
 		}else {														//Otherwise:
-			Node<E> node = this.head;									// Set a node variable that initially points to the first node.
+			ListNode<E> node = this.head;									// Set a node variable that initially points to the first node.
 			for(int i=0;i<index-1;i++)									// Changes the variable to the last node before the insertion position, if necessary.
 				node=node.nextNode;
 			newNode.nextNode= node.nextNode;							// The new node is linked with the next node of the variable node.
@@ -117,9 +117,9 @@ public class LinkedList<E> {
 	 * @return null, if the index doesn't exist.
 	 * @return E, the element wrapped in the node in the index.
 	 */
-	public Node<E> get(int index) {
+	public ListNode<E> get(int index) {
 		if (index>this.size-1||index<0) return null; 				// If the given index < 0 or index > size-1, do nothing.
-		Node<E> node = this.getHead();
+		ListNode<E> node = this.getHead();
 		for(int i=0; i<index; i++)
 			node=node.nextNode;
 		return node;
@@ -139,7 +139,7 @@ public class LinkedList<E> {
 			oldElement = this.getHead().element;
 			this.setHead(this.getHead().nextNode);
 		} else {
-			Node<E> node = this.getHead();
+			ListNode<E> node = this.getHead();
 			for(int i=0; i<index-1; i++)
 				node=node.nextNode;
 			oldElement= node.nextNode.element;
@@ -159,7 +159,7 @@ public class LinkedList<E> {
 	 */
 	public E replace(int index, E newElement) {
 		if (index>this.size-1||index<0) return null; 				// If the given index < 0 or index > size-1, do nothing.
-		Node<E> node = this.getHead();
+		ListNode<E> node = this.getHead();
 		for(int i=0; i<index; i++)
 			node=node.nextNode;
 		E oldElement = node.element;
@@ -174,7 +174,7 @@ public class LinkedList<E> {
 	 * @return
 	 */
 	public int firstIndexOf(E element) {
-		Node<E> node= this.getHead();
+		ListNode<E> node= this.getHead();
 		for(int i=0; i<this.size;i++) {
 			if(node.element.equals(element)) return i;
 			node= node.nextNode;
@@ -182,16 +182,16 @@ public class LinkedList<E> {
 		return -1;
 	}	
 	
-	public Node<E> binarySearch(int value) {
+	public ListNode<E> binarySearch(int value) {
 		int index= (this.getSize()-1)/2;
-		Node<E> node= this.head;
+		ListNode<E> node= this.head;
 		for(int i=0; i<index; i++) {
 			node=node.nextNode;
 		}
 		return binarySearch(value, 0, this.getSize()-1, node );
 	}
 
-	private Node<E> binarySearch(int x, int lb,int ub, Node<E> node) {
+	private ListNode<E> binarySearch(int x, int lb,int ub, ListNode<E> node) {
 		if(node!=null) {
 			if(node.value==x) return node;
 			else {
@@ -242,8 +242,8 @@ public class LinkedList<E> {
 	
 	private void swap(int a, int b) {
 		if(a!=b) {
-			Node<E> nodeA = this.get(a);
-			Node<E> nodeB = this.get(b);
+			ListNode<E> nodeA = this.get(a);
+			ListNode<E> nodeB = this.get(b);
 			
 			E elementA = nodeA.element;
 			int valueA = nodeA.value;
@@ -259,7 +259,7 @@ public class LinkedList<E> {
 
 	public void printList() {
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-		Node<E> temp = this.head;
+		ListNode<E> temp = this.head;
 		
 		try {
 			bw.write("Elements:\n");
@@ -275,10 +275,10 @@ public class LinkedList<E> {
 	
 	public void reverse() {
 		LinkedStack<E> tempStack= new LinkedStack<E>();
-		Node<E> temp = this.head;
+		ListNode<E> temp = this.head;
 		
 		while(temp!=null) {
-			Node<E> clone=temp.clone();
+			ListNode<E> clone=temp.clone();
 			tempStack.push(clone.element,clone.value);
 			temp=temp.nextNode;
 		}
@@ -327,7 +327,7 @@ class LinkedStack<E> extends LinkedList<E> {
 		return this.remove(this.size-1);
 	}
 	
-	public Node<E> peek() {
+	public ListNode<E> peek() {
 		return this.get(this.size-1);
 	}
 	
