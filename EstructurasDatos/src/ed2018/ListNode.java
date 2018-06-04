@@ -1,19 +1,19 @@
 package ed2018;
 
-public class Node<T> {
+public class ListNode<T> {
 	T element;
 	int value;
-	Node<T> nextNode;
-	Node<T> lastNode;
+	ListNode<T> nextNode;
+	ListNode<T> lastNode;
 	
-	public Node(T element) {
+	public ListNode(T element) {
 		super();
 		this.element = element;
 		this.nextNode = null;
 		this.lastNode = null;
 		this.value = -1;
 	}
-	public Node(T element, Node<T> lastNode,  Node<T> nextNode, int value) {
+	public ListNode(T element, ListNode<T> lastNode,  ListNode<T> nextNode, int value) {
 		super();
 		this.element = element;
 		this.nextNode = nextNode;
@@ -26,10 +26,10 @@ public class Node<T> {
 	public int getValue() {
 		return value;
 	}
-	public Node<T> getNextNode() {
+	public ListNode<T> getNextNode() {
 		return nextNode;
 	}
-	public Node<T> getLastNode() {
+	public ListNode<T> getLastNode() {
 		return lastNode;
 	}
 	@Override
@@ -37,7 +37,7 @@ public class Node<T> {
 		return "["+ element.toString() +"]" + "\n";
 	}
 	
-	public Node<T> clone(){
-		return new Node<T>(this.element, this.lastNode.clone(), this.nextNode.clone(),this.value);
+	public ListNode<T> clone(){
+		return new ListNode<T>(this.element, this.lastNode.clone(), this.nextNode.clone(),this.value);
 	}
 }
