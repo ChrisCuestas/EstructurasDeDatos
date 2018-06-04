@@ -73,7 +73,8 @@ public class Recursions {
 	}
 	
 	public int multiplicacion(int a, int b) {
-		return -1;
+		if(b==1)return a;
+		else return a + multiplicacion(a,b-1);
 	}
 	
 	public String inversaCadena(String cadena){
