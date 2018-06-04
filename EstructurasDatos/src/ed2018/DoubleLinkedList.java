@@ -13,6 +13,14 @@ public class DoubleLinkedList<E> {
 		this.size=0;
 	}
 	
+	public ListNode<E> getHead() {
+		return head;
+	}
+
+	public void setHead(ListNode<E> head) {
+		this.head = head;
+	}
+	
 	public int getSize() {
 		return this.size;
 	}
@@ -119,8 +127,20 @@ public class DoubleLinkedList<E> {
 	}
 
 	public E remove(int index) {
-		// TODO Auto-generated method stub
-		return null;
+		if (index>this.size-1||index<0) return null; 				// If the given index < 0 or index > size-1, do nothing.
+		E oldElement;
+		if (index==0) {
+			oldElement = this.getHead().element;
+			this.setHead(this.getHead().nextNode);
+		} else {
+			ListNode<E> node = this.getHead();
+			for(int i=0; i<index-1; i++)
+				node=node.nextNode;
+			oldElement= node.nextNode.element;
+			node.nextNode=node.nextNode.nextNode;
+		}
+		this.decrementSize(1);
+		return oldElement;
 	}
 
 	public E replace(int index, E newElement) {
@@ -150,8 +170,12 @@ public class DoubleLinkedList<E> {
 	}
 
 	public int firstIndexOf(E element) {
-		// TODO Auto-generated method stub
-		return 0;
+		ListNode<E> node= this.getHead();
+		for(int i=0; i<this.size;i++) {
+			if(node.element.equals(element)) return i;
+			node= node.nextNode;
+		}	
+		return -1;
 	}
 	
 	public ListNode<E> binarySearch(int value) {

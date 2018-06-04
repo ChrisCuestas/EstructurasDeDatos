@@ -1,15 +1,15 @@
 package ed2018;
 
 /**
- * The Stack is an ArraybasedList. 
+ * The ArrayStack is an ArraybasedList. 
  * 
  * @author Christian Camilo Cuestas Ibáñez
  *
  * @param <E>
  */
-public class Stack<E> extends ArraybasedList<E> {
+public class ArrayStack<E> extends ArraybasedList<E> {
 
-	public Stack() {
+	public ArrayStack() {
 		super();
 	}
 
@@ -27,7 +27,7 @@ public class Stack<E> extends ArraybasedList<E> {
 	
 	public String printStack() {
 		String printedStack="";
-		Stack<E> temp = new Stack<E>();
+		ArrayStack<E> temp = new ArrayStack<E>();
 		while(!this.isEmpty()) {
 			temp.push(this.pop());
 		}

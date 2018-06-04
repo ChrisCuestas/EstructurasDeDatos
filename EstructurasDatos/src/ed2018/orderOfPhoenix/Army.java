@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
 import ed2018.Queue;
-import ed2018.Stack;
+import ed2018.ArrayStack;
 
 public class Army {
 
@@ -15,13 +15,13 @@ public class Army {
 	public Army(int size) {
 		this.size = size;
 		this.rows = new Object[size];
-		for(int i=0; i<size; i++) rows[i]=new Stack<Integer>();
+		for(int i=0; i<size; i++) rows[i]=new ArrayStack<Integer>();
 	}
 	
 	@SuppressWarnings("unchecked")
 	public void insert(int row, int height) {
 		if(row>=this.size)return;
-		((Stack<Integer>) this.rows[row]).push(height);
+		((ArrayStack<Integer>) this.rows[row]).push(height);
 	}
 
 	public static void main(String[] args) {

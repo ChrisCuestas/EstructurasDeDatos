@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
 import ed2018.Queue;
-import ed2018.Stack;
+import ed2018.ArrayStack;
 
 public class Phonebook {
 
@@ -22,7 +22,7 @@ public class Phonebook {
 	public void addNumber(long number) {
 		if(!this.phonebook.isEmpty()) {
 			if(number<this.phonebook.getLast()) {
-				Stack<Long> stack = new Stack<Long>();
+				ArrayStack<Long> stack = new ArrayStack<Long>();
 				while (number<this.phonebook.getLast()) {
 					stack.push(this.phonebook.removeLast());
 					if(this.phonebook.isEmpty()) break;

@@ -6,16 +6,16 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
-import ed2018.Stack;
+import ed2018.ArrayStack;
 
 public class Harry {
 
-	private Stack<Integer> monkBag;
+	private ArrayStack<Integer> monkBag;
 	private int[] harryBag;
 	private int value; 
 	
 	public Harry() {
-		this.monkBag = new Stack<Integer>();
+		this.monkBag = new ArrayStack<Integer>();
 		this.value=0;
 	}
 	

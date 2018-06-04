@@ -5,7 +5,7 @@ import java.io.OutputStreamWriter;
 
 public class StackTest {
 
-	public void printStack(Stack<Grade> s) {
+	public void printStack(ArrayStack<Grade> s) {
 		BufferedWriter bw= new BufferedWriter(new OutputStreamWriter(System.out));
 		try {
 			while(!s.isEmpty()) {
@@ -18,7 +18,7 @@ public class StackTest {
 	
 	public static void main(String[] args) {
 		
-		Stack<Grade> grades = new  Stack<Grade>();
+		ArrayStack<Grade> grades = new  ArrayStack<Grade>();
 		Grade g1= new Grade("task1", 3.5);
 		Grade g2= new Grade("quiz1", 1.5);
 		Grade g3= new Grade("test1", 0.5);

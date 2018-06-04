@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
 import ed2018.ArraybasedList;
-import ed2018.Stack;
+import ed2018.ArrayStack;
 
 public class Marbles {
 
@@ -20,7 +20,7 @@ public class Marbles {
 	public void addMarble(int n) {
 		if(!this.marbles.isEmpty()) {
 			if(n<this.marbles.getLast()) {
-				Stack<Integer> stack = new Stack<Integer>();
+				ArrayStack<Integer> stack = new ArrayStack<Integer>();
 				while (n<this.marbles.getLast()) {
 					stack.push(this.marbles.removeLast());
 					if(this.marbles.isEmpty()) break;
