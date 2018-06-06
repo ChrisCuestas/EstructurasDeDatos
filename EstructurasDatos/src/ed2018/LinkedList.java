@@ -51,10 +51,18 @@ public class LinkedList<E> {
 	
 	public void insertFirst(E element, int value) {
 		this.insert(0, element, value);
-	};
+	}
+	
+	public void insertFirst(E element) {
+		this.insert(0, element, -1);
+	}
 	
 	public void insert(E element, int value) {
 		this.insert(this.getSize(), element, value);
+	}
+	
+	public void insert(E element) {
+		this.insert(this.getSize(), element, -1);
 	}
 	
 	public E getFirst() {
@@ -310,6 +318,11 @@ public class LinkedList<E> {
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public LinkedList<E> cloneList() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
 

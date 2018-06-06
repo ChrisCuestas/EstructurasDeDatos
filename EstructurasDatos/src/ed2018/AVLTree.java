@@ -1,65 +1,6 @@
 package ed2018;
 
-class AVLNode<E> {
-
-	E element;
-	int balanceFactor;
-	int value;
-	AVLNode<E> left;
-	AVLNode<E> right;
-	
-	public AVLNode() {
-		this.value = -1;
-		this.element = null;
-		this.left = null;
-		this.right = null;
-		this.balanceFactor = 0;
-	}
-	
-	public AVLNode(E element) {
-		this.value = -1;
-		this.element = element;
-		this.left = null;
-		this.right = null;
-		this.balanceFactor = 0;
-	}
-	
-	public AVLNode(E element, int value) {
-		this.value = value;
-		this.element = element;
-		this.left = null;
-		this.right = null;
-		this.balanceFactor = 0;
-	}
-	
-	public AVLNode(E element, int value, AVLNode<E> left, AVLNode<E> right) {
-		this.value = value;
-		this.element = element;
-		this.left = left;
-		this.right = left;
-		if(this.left==null) {
-			if(this.right==null)
-				this.balanceFactor = 0;
-			else this.balanceFactor = 1 + this.right.balanceFactor;
-		} else if(this.right==null) {
-			if(this.left==null)
-				this.balanceFactor = 0;
-			else this.balanceFactor = 1;
-		} else {
-			this.balanceFactor = this.left.balanceFactor + this.right.balanceFactor;
-		}
-	}
-	
-	public AVLNode<E> clone(){
-		return new AVLNode<E>(this.element, this.value);
-	}
-	
-	public String toString() {
-		return "Value: " + this.value + ", Element: " + this.element.toString() + "\n";
-	}
-}
-
-public class AVLTree<E>  {
+public class AVLTree<E> {
 	
 	private AVLNode<E> root;
 	
@@ -96,24 +37,38 @@ public class AVLTree<E>  {
 	}
 
 	private boolean insert(AVLNode<E> node, E element, int value) {
-		if(value==node.value) return false;
+		if(value==node.value) {
+			node.refreshBalanceFactor();
+			return false;
+		}
 		if(node.value==-1) {
 			node.element=element;
 			node.value=value;
+			node.refreshBalanceFactor();
 			return true;
 		}
 		if(value<node.value) {
 			if(node.left==null) {
 				node.left=new AVLNode<E>(element, value);
+				node.refreshBalanceFactor();
 				return true;
 			}
-			else return insert(node.left, element, value);
+			else {
+				boolean temp = insert(node.left, element, value);
+				node.refreshBalanceFactor();
+				return temp;
+			}
 		}else {
 			if(node.right==null) {
 				node.right=new AVLNode<E>(element, value);
+				node.refreshBalanceFactor();
 				return true;
 			}
-			else return insert(node.right, element, value);
+			else {
+				boolean temp = insert(node.right, element, value);
+				node.refreshBalanceFactor();
+				return temp;
+			}
 		}
 	}
 

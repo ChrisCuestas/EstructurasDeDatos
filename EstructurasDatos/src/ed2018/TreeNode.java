@@ -32,40 +32,12 @@ public class TreeNode<E> {
 		this.value = value;
 		this.element = element;
 		this.left = left;
-		this.right = left;
-	}
-
-	/*public E getElement() {
-		return element;
-	}
-
-	public void setElement(E element) {
-		this.element = element;
-	}
-
-	public int getValue() {
-		return value;
-	}
-
-	public void setValue(int value) {
-		this.value = value;
-	}
-
-	public TreeNode<E> getLeft() {
-		return left;
-	}
-
-	public void setLeft(TreeNode<E> left) {
-		this.left = left;
-	}
-
-	public TreeNode<E> getRight() {
-		return right;
-	}
-
-	public void setRight(TreeNode<E> right) {
 		this.right = right;
-	}*/
+	}
+	
+	public boolean isLeaf(){
+		return (this.left == null && this.right == null) ? true : false;
+	}
 	
 	public TreeNode<E> clone(){
 		return new TreeNode<E>(this.element, this.value);

@@ -2,21 +2,21 @@ package ed2018;
 
 public class BinaryTree<E> {
 
-	private AVLNode<E> root;
+	private TreeNode<E> root;
 	
 	public BinaryTree() {
 		this.root=null;
 	}
 	
 	public BinaryTree(E element, int value) {
-		this.root = new AVLNode<E>(element,value);
+		this.root = new TreeNode<E>(element,value);
 	}
 	
-	public BinaryTree(E element, int value, AVLNode<E> left, AVLNode<E> right) {
-		this.root = new AVLNode<E>(element,value,left,right);
+	public BinaryTree(E element, int value, TreeNode<E> left, TreeNode<E> right) {
+		this.root = new TreeNode<E>(element,value,left,right);
 	}
 	
-	public AVLNode<E> getRoot() {
+	public TreeNode<E> getRoot() {
 		return this.root;
 	}
 	
@@ -25,18 +25,18 @@ public class BinaryTree<E> {
 		this.root.value=value;
 	}
 	
-	public void setRoot(AVLNode<E> root) {
+	public void setRoot(TreeNode<E> root) {
 		this.root = root;
 	}
 
 	public boolean insert(E element, int value) {
 		if(this.root==null) {
-			this.root = new AVLNode<E>(element, value);
+			this.root = new TreeNode<E>(element, value);
 			return true;
 		} else return insert(this.root, element, value);
 	}
 
-	private boolean insert(AVLNode<E> node, E element, int value) {
+	private boolean insert(TreeNode<E> node, E element, int value) {
 		if(value==node.value) return false;
 		if(node.value==-1) {
 			node.element=element;
@@ -45,24 +45,24 @@ public class BinaryTree<E> {
 		}
 		if(value<node.value) {
 			if(node.left==null) {
-				node.left=new AVLNode<E>(element, value);
+				node.left=new TreeNode<E>(element, value);
 				return true;
 			}
 			else return insert(node.left, element, value);
 		}else {
 			if(node.right==null) {
-				node.right=new AVLNode<E>(element, value);
+				node.right=new TreeNode<E>(element, value);
 				return true;
 			}
 			else return insert(node.right, element, value);
 		}
 	}
 
-	public AVLNode<E> removeNode(int value) {
-		AVLNode<E> node = this.getNode(value);
+	public TreeNode<E> removeNode(int value) {
+		TreeNode<E> node = this.getNode(value);
 		if (node==null) return null;
-		AVLNode<E> parent = parentOf(node.value);
-		AVLNode<E> nodeClone= node.clone();
+		TreeNode<E> parent = parentOf(node.value);
+		TreeNode<E> nodeClone= node.clone();
  		if(node.left==null && node.right==null) {
  			if(parent.value<node.value) 
  				parent.right=null;
@@ -78,7 +78,7 @@ public class BinaryTree<E> {
 	 				parent.right=node.left;
 	 			else parent.left=node.left;
 			else {
-				AVLNode<E> next = getNext(node.value);
+				TreeNode<E> next = getNext(node.value);
 				next.left=node.left;
 				next.right=node.right;
 				if(parent.value<node.value) 
@@ -91,13 +91,13 @@ public class BinaryTree<E> {
  		return nodeClone;
 	}
 	
-	public AVLNode<E> parentOf(int value) {
-		AVLNode<E> node= this.getRoot();
+	public TreeNode<E> parentOf(int value) {
+		TreeNode<E> node= this.getRoot();
 		if(node.value==value) return node;
 		else return parentOf(value,node);
 	}
 	
-	private AVLNode<E> parentOf(int value, AVLNode<E> node) {
+	private TreeNode<E> parentOf(int value, TreeNode<E> node) {
 		if (node == null)
 			throw new IllegalArgumentException("This node is null");
 		if(node.left==null&&node.right==null) return null;
@@ -118,19 +118,19 @@ public class BinaryTree<E> {
 		else return parentOf(value,node.left);
 	}
 
-	public AVLNode<E> getNext(int value) {
-		AVLNode<E> node = this.getNode(value).right;
+	public TreeNode<E> getNext(int value) {
+		TreeNode<E> node = this.getNode(value).right;
 		while(node.left!=null) {
 			node=node.left;
 		}
 		return node.clone();
 	}
 
-	public AVLNode<E> getNode(int value) {
+	public TreeNode<E> getNode(int value) {
 		return getNode(value, this.getRoot());
 	}
 
-	private AVLNode<E> getNode(int value, AVLNode<E> node) {
+	private TreeNode<E> getNode(int value, TreeNode<E> node) {
 		if (node == null)
 			return null;
 		if(node.value==value) return node;
@@ -139,32 +139,32 @@ public class BinaryTree<E> {
 	}
 	
 
-	public AVLNode<E> removeLeftSubtree(AVLNode<E> node) {
+	public TreeNode<E> removeLeftSubtree(TreeNode<E> node) {
 		if (root == null)
 			throw new IllegalArgumentException("This tree is empty");
-		AVLNode<E> removedNode= node.left;
+		TreeNode<E> removedNode= node.left;
 		node.left=null;
 		return removedNode;
 	}
 
-	public AVLNode<E> removeRightSubtree(AVLNode<E> node) {
+	public TreeNode<E> removeRightSubtree(TreeNode<E> node) {
 		if (root == null)
 			throw new IllegalArgumentException("This tree is empty");
-		AVLNode<E> removedNode= node.right;
+		TreeNode<E> removedNode= node.right;
 		node.right=null;
 		return removedNode;
 	}
 
-	public AVLNode<E> findMin() {
-		AVLNode<E> node = this.getRoot();
+	public TreeNode<E> findMin() {
+		TreeNode<E> node = this.getRoot();
 		while(node.left!=null) {
 			node = node.left;
 		}
 		return node;
 	}
 
-	public AVLNode<E> findMax() {
-		AVLNode<E> node = this.getRoot();
+	public TreeNode<E> findMax() {
+		TreeNode<E> node = this.getRoot();
 		while(node.right!=null) {
 			node = node.right;
 		}
@@ -175,7 +175,7 @@ public class BinaryTree<E> {
 		preOrder(this.getRoot());
 	}
 	
-	public void preOrder(AVLNode<E> node) {
+	public void preOrder(TreeNode<E> node) {
 		if(node != null) {
 			System.out.println(node.toString());
 			preOrder(node.left);
@@ -187,7 +187,7 @@ public class BinaryTree<E> {
 		inOrder(this.getRoot());
 	}
 	
-	public void inOrder(AVLNode<E> node) {
+	public void inOrder(TreeNode<E> node) {
 		if(node != null) {
 			inOrder(node.left);
 			System.out.println(node.toString());
@@ -199,7 +199,7 @@ public class BinaryTree<E> {
 		postOrder(this.getRoot());
 	}
 	
-	public void postOrder(AVLNode<E> node) {
+	public void postOrder(TreeNode<E> node) {
 		if(node != null) {
 			postOrder(node.left);
 			postOrder(node.right);
@@ -207,23 +207,15 @@ public class BinaryTree<E> {
 		}
 	}
 
-	public void levelOrder() {
-		levelOrder(this.getRoot());
-	}
-
-	private void levelOrder(AVLNode<E> node) {
-		// TODO Auto-generated method stub
-	}
-
 	public boolean contains(E element) {
-		AVLNode<E> node = this.getRoot();
+		TreeNode<E> node = this.getRoot();
 		if(this.getRoot()!=null) {
 			return contains(element, node);
 		}
 		return false;
 	}
 
-	private boolean contains(E element, AVLNode<E> node) {
+	private boolean contains(E element, TreeNode<E> node) {
 		if (element.equals(node.element)) return false;
 		else return contains(element, node.left)||contains(element, node.right);
 	}
