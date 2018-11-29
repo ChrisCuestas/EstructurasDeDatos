@@ -11,11 +11,16 @@ public class Complete {
 		recovery = recoverySubtreeInPost(inOrder, postOrder);
 		recovery.preOrder(recovery.getRoot());
 	}
-	
+
 	public void in_pre2post(String inOrder, String preOrder) {
 		BinaryTree <String> recovery = new BinaryTree<String>();
 		recovery = recoverySubtreeInPre(inOrder, preOrder);
 		recovery.preOrder(recovery.getRoot());
+	}
+	
+	private BinaryTree<String> recoverySubtreeInPost(String inOrder, String postOrder) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	public BinaryTree<String> recoverySubtreeInPre(String subPreOrder, String subInOrder){
